@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+@layer base {
+  body {
+    @apply bg-[#0d0f14] text-[#c8d0e0] font-sans overflow-hidden antialiased;
+  }
+}
+
+@layer components {
+  .industrial-btn {
+    @apply bg-[#1e2433] border border-[#2a3548] text-[#8faabe] px-4 py-1.5 text-[11px] font-mono 
+           uppercase tracking-wider rounded transition-all duration-150 hover:bg-[#252d40] 
+           hover:border-[#3a4a60] hover:text-[#c8d8e8] active:scale-95;
+  }
+
+  .btn-run {
+    @apply bg-[#1a3a1a] border-[#2a7a2a] text-[#5eda5e] font-bold hover:bg-[#1f4a1f];
+  }
+
+  .btn-run.running {
+    @apply bg-[#3a1a1a] border-[#7a2a2a] text-[#e05e5e] hover:bg-[#4a1f1f];
+  }
+
+  .btn-clear {
+    @apply bg-[#2a1a1a] border-[#5a2a2a] text-[#c07070] hover:bg-[#3a1f1f];
+  }
+
+  .node-glow-start {
+    @apply shadow-[0_0_15px_rgba(58,123,213,0.4)] border-[#3a7bd5];
+  }
+
+  .node-glow-goal {
+    @apply shadow-[0_0_20px_rgba(224,80,80,0.5)] border-[#e05050] animate-pulse;
+  }
+
+  .node-glow-path {
+    @apply shadow-[0_0_10px_rgba(224,80,80,0.3)] bg-[#3a0f0f] border-[#e05050];
+  }
+
+  /* Tree Intensity Shades */
+  .tree-l1 { @apply bg-[#1a4a1a] border-[#2a7a2a]; }
+  .tree-l2 { @apply bg-[#1a6a1a] border-[#2aaa2a]; }
+  .tree-l3 { @apply bg-[#1a8a1a] border-[#3ada3a]; }
+
+  /* Building Shade */
+  .building-node { @apply bg-[#1a1d26] border-[#3a4455]; }
+
+  .node-glow-overdrive {
+    box-shadow: inset 0 0 15px rgba(0, 242, 255, 0.4), 0 0 10px rgba(0, 242, 255, 0.2);
+    animation: overdrive-pulse 1.2s infinite ease-in-out;
+  }
+}
+
+@keyframes overdrive-pulse {
+  0% { background-color: #002b2d; border-color: #00f2ff; }
+  50% { background-color: #005054; border-color: #00f2ff; transform: scale(1.02); }
+  100% { background-color: #002b2d; border-color: #00f2ff; }
+}
+
+/* Custom scrollbar for industrial feel */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0f14;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a3040;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3a4560;
+}
+
+/* Cinematic Breach */
+@keyframes breach-glitch {
+  0% { transform: scale(1) skew(0deg); opacity: 1; }
+  10% { transform: scale(1.1) skew(3deg); opacity: 0.8; }
+  20% { transform: scale(1) skew(-3deg); opacity: 1; }
+  100% { transform: scale(1) skew(0deg); opacity: 1; }
+}
+
+.breach-popup {
+  animation: breach-glitch 0.4s infinite;
+  box-shadow: 0 0 40px rgba(224, 80, 80, 0.2);
+}
+
+.node-glow-breached {
+  background: radial-gradient(circle, #ff8c0055 0%, #3a2008 70%) !important;
+  animation: breach-smolder 2s infinite ease-in-out;
+}
+
+@keyframes breach-smolder {
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 2px #ff8c00); }
+  50% { filter: brightness(1.5) drop-shadow(0 0 8px #ff8c00); }
+}
