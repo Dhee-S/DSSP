@@ -106,7 +106,7 @@ export default function App() {
                     setStats((prev) => ({ ...prev, path: result.path!.length, ms: latency }));
                     setStatus({ type: 'done', text: `✓ ${algoNameMap[algoId]} Success — Found in ${latency}ms` });
                     resolve({ id: algoId, name: algoNameMap[algoId], nodes: result.steps.filter(s => s.type === 'explored').length, path: result.path.length, ms: latency, found: true });
-                } else if (!result.found && algoId !== 'dfs') {
+                } else if (!result.found && !isCompareMode) {
                     // INTERACTIVE PROBLEM SOLVING: Trigger Breach Scan if stuck
                     setStatus({ type: 'running', text: 'PATH BLOCKED. Analyzing structural bypass...' });
                     const breachRes = runBreachSearch(grid, grid[startNode.x][startNode.y], grid[goalNode.x][goalNode.y]);
@@ -192,7 +192,7 @@ export default function App() {
         breachNodes.forEach(n => {
             const node = newGrid[n.x][n.y];
             node.isObstacle = false;
-            // node.isBreached = true; // Optional visual flag
+            node.isBreached = true;
             node.type = 'empty';
         });
         return newGrid;
