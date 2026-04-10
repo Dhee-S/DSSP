@@ -45,10 +45,10 @@ During the development phase, several complex state and visualization issues wer
 2. Install dependencies: `npm install`
 3. Launch tactical HUD: `npm run dev`
 
-### Hosting Requirements
-This project is configured for **Static Site Hosting** (Firebase/Netlify/Vercel).
-- The `dist/` directory contains the production-ready assets.
-- Ensure the routing handles the Single Page App (SPA) configuration if using client-side navigation.
+### Live Demo
+
+
+[![Live Preview](https://img.shields.io/badge/LIVE_PREVIEW-DSSP_HUD-brightgreen?style=for-the-badge&logo=airplay)](https://dhee-s.github.io/DSSP/)
 
 ---
 
