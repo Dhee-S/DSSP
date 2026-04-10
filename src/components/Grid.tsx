@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import type { Node } from '../logic/pathfinding';
-import { Plane, LifeBuoy, Building2, Trees, Target, Flame } from 'lucide-react';
+import { Plane, LifeBuoy, Building2, Trees, Target } from 'lucide-react';
 
 interface GridProps {
   grid: Node[][];
@@ -172,7 +172,12 @@ const Grid: React.FC<GridProps> = ({
                         className={animState ? "opacity-20" : "opacity-60"} 
                     />
                 )}
-                {node.isBreached && <Flame size={metrics.cellSize * 0.5} className="text-[#ff8c00] animate-pulse" />}
+                {node.isBreached && (
+                    <Target 
+                        size={metrics.cellSize} 
+                        className={`absolute text-[#ff3131] transition-opacity duration-300 ${animState === 'path' ? 'opacity-30' : 'opacity-60'}`} 
+                    />
+                )}
                 
                 {/* Precision Targeting Overlay */}
                 {targetNodes.some(t => t.x === x && t.y === y) && (
